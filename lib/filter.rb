@@ -5,7 +5,9 @@ class Filter
     def filter_authors(articles, number_of_articles); end
 
     def filter_articles(articles, number_of_articles = nil)
-      number_of_articles = articles.size if number_of_articles.nil?
+      return [] if articles.size.zero?
+
+      number_of_articles = articles.size if number_of_articles.nil? || number_of_articles > articles.size
       filtered = []
       index = 0
       number_of_articles.times do
