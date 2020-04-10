@@ -21,12 +21,13 @@ class Scraper
     def extract_from_html(articles_html)
       articles = []
       articles_html.each do |article_html|
-        article = {}
-        article[:title] = article_html.css('.post-card-title').text.strip
-        article[:tag] = article_html.css('.post-card-tags').text.strip
-        article[:author] = {
-          name: article_html.css('a.meta-item').text.strip,
-          link: @base_url + article_html.css('a.meta-item').attribute('href').value
+        article = {
+          title: article_html.css('.post-card-title').text.strip,
+          tag: article_html.css('.post-card-tags').text.strip,
+          author: {
+            name: article_html.css('a.meta-item').text.strip,
+            link: @base_url + article_html.css('a.meta-item').attribute('href').value
+          }
         }
         articles.push(article)
       end
