@@ -13,7 +13,7 @@ class Scraper
         doc = HTTParty.get(url)
         break unless doc.code == 200 && !doc.body.nil? && !doc.body.empty?
 
-        parsed_html = Nokogiri::HTML(doc)
+        parsed_html = Nokogiri::HTML(doc.body)
         articles_html = parsed_html.css('.post-card-content')
         articles += extract_from_html(articles_html)
         page += 1
