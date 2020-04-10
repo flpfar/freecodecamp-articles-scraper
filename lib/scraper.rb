@@ -1,19 +1,23 @@
 require 'httparty'
 require 'nokogiri'
-require 'byebug'
 
 class Scraper
   class << self
-    def scrap
+    def scrap(pages = 10)
       @base_url = 'https://www.freecodecamp.org'
-      url = @base_url + "/news/page/#{1}/"
       articles = []
-      doc = HTTParty.get(url)
-      parsed_html = Nokogiri::HTML(doc)
-      articles_html = parsed_html.css('.post-card-content')
-      articles += extract_from_html(articles_html)
+      page = 1
 
-      byebug
+      pages.times do
+        url = @base_url + "/news/page/#{page}/"
+        doc = HTTParty.get(url)
+        break unless doc.code == 200 && !doc.body.nil? && !doc.body.empty?
+
+        parsed_html = Nokogiri::HTML(doc)
+        articles_html = parsed_html.css('.post-card-content')
+        articles += extract_from_html(articles_html)
+        page += 1
+      end
     end
 
     private
@@ -21,19 +25,21 @@ class Scraper
     def extract_from_html(articles_html)
       articles = []
       articles_html.each do |article_html|
+        author_name = article_html.css('a.meta-item').text.strip
+        author_profile = author_name == '' ? '' : @base_url + article_html.css('a.meta-item').attribute('href').value
+
         article = {
           title: article_html.css('.post-card-title').text.strip,
           tag: article_html.css('.post-card-tags').text.strip,
           author: {
-            name: article_html.css('a.meta-item').text.strip,
-            link: @base_url + article_html.css('a.meta-item').attribute('href').value
+            name: author_name,
+            profile: author_profile
           }
         }
+
         articles.push(article)
       end
       articles
     end
   end
 end
-
-Scraper.scrap
