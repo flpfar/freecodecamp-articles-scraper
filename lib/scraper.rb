@@ -18,6 +18,8 @@ class Scraper
         articles += extract_from_html(articles_html)
         page += 1
       end
+
+      articles
     end
 
     private
