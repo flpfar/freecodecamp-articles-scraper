@@ -21,7 +21,7 @@ class Filter
         authors[author_name][:profile] = article[:author][:profile]
       end
       number_of_authors = articles.size if number_of_authors.nil? || number_of_authors > articles.size
-      test = Hash[authors.sort_by { |_key, value| -value[:count] }[0..number_of_authors - 1]]
+      Hash[authors.sort_by { |_key, value| -value[:count] }[0..number_of_authors - 1]]
     end
 
     def filter_articles(articles, number_of_articles = nil)
