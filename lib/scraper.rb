@@ -28,7 +28,12 @@ class Scraper
       articles = []
       articles_html.each do |article_html|
         author_name = article_html.css('a.meta-item').text.strip
-        author_profile = author_name == '' ? '' : @base_url + article_html.css('a.meta-item').attribute('href').value
+        if author_name == ''
+          author_profile = ''
+          author_name = 'Unidentified'
+        else
+          author_profile = @base_url + article_html.css('a.meta-item').attribute('href').value
+        end
 
         article = {
           title: article_html.css('.post-card-title').text.strip,
