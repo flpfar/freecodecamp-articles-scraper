@@ -1,6 +1,5 @@
 require_relative './stringpainter.rb'
 require_relative './typetester.rb'
-require 'byebug'
 class OutputFormatter
   class << self
     def format(results)

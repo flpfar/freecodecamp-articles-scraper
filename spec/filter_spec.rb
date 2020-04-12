@@ -1,6 +1,5 @@
 require_relative '../lib/scraper.rb'
 require_relative '../lib/filter.rb'
-require 'byebug'
 
 describe Filter do
   before(:all) { @articles = Scraper.scrap(2) }
