@@ -24,9 +24,9 @@ class OutputFormatter
     private
 
     def format_tags(results)
-      formatted = '#  Tag                                               | Articles '.green.bold
+      formatted = '#    Tag                                               | Articles '.green.bold
       results.each_with_index do |result, index|
-        formatted += "\n#{index + 1}. "
+        formatted += "\n#{index + 1}.".ljust(6)
         formatted += result[0].to_s.ljust(50)
         formatted += '| ' + result[1].to_s.center(8)
       end
@@ -34,12 +34,12 @@ class OutputFormatter
     end
 
     def format_authors(results)
-      formatted = '#  Author                                            | Articles | Profile'.green.bold
+      formatted = '#    Author                                            | Articles | Profile'.green.bold
       results.each_with_index do |result, index|
         name = result[0].to_s
         articles = result[1][:count].to_s
         profile = result[1][:profile]
-        formatted += "\n#{index + 1}. "
+        formatted += "\n#{index + 1}.".ljust(6)
         formatted += name.ljust(50)
         formatted += '| ' + articles.center(8) + ' '
         formatted += '| ' + profile
@@ -48,9 +48,9 @@ class OutputFormatter
     end
 
     def format_articles(results)
-      formatted = '#  Articles'.green.bold
+      formatted = '#    Articles'.green.bold
       results.each_with_index do |result, index|
-        formatted += "\n#{index + 1}. "
+        formatted += "\n#{index + 1}.".ljust(6)
         formatted += result
       end
       formatted += "\n"
