@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 require_relative '../lib/scraper'
 require_relative '../lib/filter'
 require_relative '../lib/outputformatter'
@@ -16,7 +17,7 @@ puts '=================================================================='.revers
 puts "\n"
 puts 'Loading the lastest articles, please wait...'
 
-articles = Scraper.scrap(2)
+articles = Scraper.scrap(20)
 
 puts "\n"
 puts "Loading completed! Articles loaded: #{articles.size.to_s.reverse_color}".green.bold
