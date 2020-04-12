@@ -19,6 +19,8 @@ puts 'Loading the lastest articles, please wait...'
 
 articles = Scraper.scrap(20)
 
+abort("\nWe couldn't load any article. Try again later.\n\n".bold + 'Application aborted.') if articles.size.zero?
+
 puts "\n"
 puts "Loading completed! Articles loaded: #{articles.size.to_s.reverse_color}".green.bold
 
