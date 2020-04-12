@@ -1,5 +1,6 @@
 require_relative '../lib/scraper'
 require_relative '../lib/filter'
+require_relative '../lib/outputformatter'
 require_relative '../lib/stringpainter'
 
 def option_valid?(option)
@@ -36,18 +37,17 @@ loop do
   print 'Invalid option. Try again: ' until option_valid?(gets.chomp.to_i)
 
   case @option
-  when 1
-    #results = Filter.filter_tags(articles, 10)
-  when 2
-    #results = Filter.filter_authors(articles, 10)
-  when 3
-    results = Filter.filter_articles(articles, 25)
-  when 4
-    #results = Filter.filter_tags(articles)
-  when 5
-    #results = Filter.filter_articles(articles)
+  when 1 then results = Filter.filter_tags(articles, 10)
+  when 2 then results = Filter.filter_authors(articles, 10)
+  when 3 then results = Filter.filter_articles(articles, 25)
+  when 4 then results = Filter.filter_tags(articles)
+  when 5 then results = Filter.filter_articles(articles)
   when 6
     puts "\n\nClosing application... See you!"
     break
   end
+  puts "\n" + OutputFormatter.format(results)
+
+  print "\n>> Press 'Enter' to continue... ".bold
+  gets.chomp
 end
