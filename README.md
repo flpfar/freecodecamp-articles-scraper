@@ -1,4 +1,4 @@
-# freeCodeCamp Articles Scraper
+# Free Code Camp Articles Scraper
 
 > This is a [freeCodeCamp.org](https://www.freecodecamp.org/news/) articles scraper, created to practice data mining from websites in Ruby.
 
@@ -45,7 +45,7 @@ This Scraper gets data from first pages of freeCodeCamp.org, loading every artic
 - To change the number of results filtered, change the argument value when calling methods from Filter class. If there is no second argument, it returns all results.
 
 ### User Interface
-- After runing the application, choose one of the options displayed in the panel. It loops until 'Exit' option is taken.
+- After runing the application, choose one of the options displayed in the panel. The options will be displayed until 'Exit' option is taken.
 
    ```
     [=====================( Options Available )======================]
